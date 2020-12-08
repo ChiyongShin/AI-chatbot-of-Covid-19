@@ -60,10 +60,23 @@ def match_city(x):
 
 data_rows = soup.find("table",attrs={"class":"midsize"}).find("tbody").find_all("tr")
 for row in data_rows:
+    data_set = []
     citys = row.find_all("th")
     city_name = [city.get_text() for city in citys]
     match_city(city_name)
+
     columns = row.find_all("td")
-    data = [column.get_text() for column in columns]
-    data = city_name + data
-    writer.writerow(data)
+    
+    for column in columns:
+        data = column.get_text()
+        if "," in data:
+            comma = data.count(',')
+            data = re.findall("\\d+",data)
+            for i in range(1,comma+1):
+                data[0] += data[i]
+            for i in range(0, comma):
+                data.pop()
+            data = data[0]
+        data_set.append(data)
+    city_name.extend(data_set)
+    writer.writerow(city_name)
