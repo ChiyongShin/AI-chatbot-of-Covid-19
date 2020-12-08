@@ -31,9 +31,10 @@ try:
 except:
     print('ERROR!!')
 
-m = folium.Map(location=[48, -102], zoom_start = 3)
+
+# m = folium.Map(location=[48, -102], zoom_start = 3)
 
 
 conn.close()
 
-m
+m 
