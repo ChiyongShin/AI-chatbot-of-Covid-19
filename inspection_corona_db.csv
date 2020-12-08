@@ -1,3 +1,2 @@
-﻿누적 검사수,3083997
-누적 검사완료수,3019105
-누적 확진율,1.1
+Cumulative_Inspection_Count,Cumulative_Complete_Inspection,Cumulative_Confirmed_Rate,Testing_Count,Testing_Count_Rate,Result_Positive,Result_Positive_Rate,Result_Negative,Result_Negative_Rate
+3221325,3150051,1.2,71274,2.2,38755,1.2,3111296,96.6
