@@ -1,6 +1,7 @@
 import csv
 import requests
 import re
+import pymysql
 from bs4 import BeautifulSoup
 headers = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"}
 url = "http://ncov.mohw.go.kr/"
@@ -39,7 +40,6 @@ for inspection_result_data in inspection_result_data_data:
     inspection_rp_data = inspection_result_data.find("span",attrs={"class":re.compile("percentage$")})
     inspection_rn = inspection_rn_data.get_text()
     inspection_rp = inspection_rp_data.get_text()
-    print(inspection_rn,inspection_rp)
     if "%" in inspection_rp:
         inspection_rp = inspection_rp[:-2]
 
@@ -53,4 +53,20 @@ for inspection_result_data in inspection_result_data_data:
         inspection_rn = inspection_rn[0]
         inspection_info.append(inspection_rn)
         inspection_info.append(inspection_rp)
+
+    
+conn = pymysql.Connect(host="localhost", user="root", password="root", db="db")
+curs = conn.cursor()
+
+db_update = """
+UPDATE inspection_corona_db SET Cumulative_Inspection_Count='{}', Cumulative_Complete_Inspection='{}', Cumulative_Confirmed_Rate='{}'
+,Testing_Count='{}',Testing_Count_Rate='{}',Result_Positive='{}',Result_Negative='{}'
+""".format(inspection_info[0],inspection_info[1],inspection_info[2],inspection_info[3],inspection_info[4],inspection_info[5],inspection_info[6])
+
+curs.execute(db_update)
+conn.commit()
+rows = curs.fetchall()
+for row in rows:
+    print(row)
+conn.close()
 writer.writerow(inspection_info)
