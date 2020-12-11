@@ -7,7 +7,7 @@ import pymysql
 import folium
 from folium import plugins
 from folium.plugins import HeatMap
-print(folium.__version__)
+# print(folium.__version__)
 
 conn = pymysql.Connect(host="localhost", user="root", password="wlsdud369", db="db")
 curs = conn.cursor()
@@ -27,6 +27,7 @@ try:
         Isolation_Release = row[6]
         Dead = row[7]
         Incident_rate = row[8]
+        print(City_name)
 
 except:
     print('ERROR!!')
@@ -37,4 +38,4 @@ except:
 
 conn.close()
 
-m 
+# m 
