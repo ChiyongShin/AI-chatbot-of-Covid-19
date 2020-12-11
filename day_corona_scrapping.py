@@ -1,4 +1,5 @@
 import csv
+import pymysql
 import requests
 import re
 from bs4 import BeautifulSoup
@@ -12,7 +13,7 @@ day_corona_db = "day_corona_db.csv"
 day_corona_file = open(day_corona_db,"w",encoding="utf-8",newline="")
 writer = csv.writer(day_corona_file)
 
-title = "Date	Confirmed	Cure".split("\t")
+title = "Order	Date	Confirmed	Cure".split("\t")
 
 writer.writerow(title)
 
@@ -20,6 +21,7 @@ writer.writerow(title)
 info_week = soup.find("div",attrs={"class":"info_week"})
 day = info_week.find_all("th",attrs={"scope":"row"})
 day_table = info_week.find_all("td")
+order = 1
 
 for i in range(1,8):
     day_complete = day_table[(i-1)*4].get_text()
@@ -47,5 +49,20 @@ for i in range(1,8):
         day_text = re.findall("\\d+",day_text)
         day_text[0] = day_text[0] + '.' + day_text[1]
         day_text = day_text[0]
-    day_info = [day_text,day_confirm,day_complete]
+    day_info = [order,day_text,day_confirm,day_complete]
+    
+
+    conn = pymysql.Connect(host="localhost", user="root", password="root", db="db")
+    curs = conn.cursor()
+    db_update = """
+    UPDATE day_corona_db SET Date='{}', Confirmed='{}', Cure='{}' WHERE Order='{}'
+    """.format(day_info[0],day_info[1],day_info[2],order)
+    order += 1
+    curs.execute(db_update)
+    conn.commit()
+    rows = curs.fetchall()
+    for row in rows:
+        print(row)
+    conn.close()
+
     writer.writerow(day_info)

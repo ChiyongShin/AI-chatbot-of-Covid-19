@@ -1,3 +1,4 @@
+import pymysql
 import csv
 import requests
 import re
@@ -13,7 +14,7 @@ soup = BeautifulSoup(res.text, "lxml")
 city_corona_db = "city_corona_db.csv"
 city_corona_file = open(city_corona_db,"w",encoding="utf-8",newline="")
 writer = csv.writer(city_corona_file)
-title = "City_Name	Total	Domestic_Occurrence	Foreign_Inflow	Confirmed_Patient	Quarantine	Isolation_Release	Dead	Incident_rate".split("\t")
+title = "City_Name	Increasing_Total_Ctp	Increasing_Domestic_Occurrence_Ctp	Increasing_Foreign_Inflow_Ctp	Confirmed_Patient	Quarantine	Isolation_Release	Dead	Incident_rate".split("\t")
 
 writer.writerow(title)
 
@@ -55,7 +56,7 @@ def match_city(x):
     elif "제주" in x:
         x[0] = "Jeju"
     elif "검역" in x:
-        x[0] = "Quarantine"
+        x[0] = "Lazaretto"
     
 
 data_rows = soup.find("table",attrs={"class":"midsize"}).find("tbody").find_all("tr")
@@ -77,6 +78,24 @@ for row in data_rows:
             for i in range(0, comma):
                 data.pop()
             data = data[0]
+        if "-" in data:
+            data = '0'
         data_set.append(data)
     city_name.extend(data_set)
+  
+    print(city_name)
+    conn = pymysql.Connect(host="localhost", user="root", password="root", db="db")
+    curs = conn.cursor()
+    db_update = """
+    UPDATE city_corona_db SET Increasing_Total_Ctp='{}', Increasing_Domestic_Occurrence_Ctp='{}'
+    ,Increasing_Foreign_Inflow_Ctp='{}',Confirmed_Patient='{}',Quarantine='{}',Isolation_Release='{}',
+    Dead='{}',Incident_rate='{}' WHERE City_Name='{}'
+    """.format(city_name[1],city_name[2],city_name[3],city_name[4],city_name[5],city_name[6],city_name[7],city_name[8],city_name[0])
+
+    curs.execute(db_update)
+    conn.commit()
+    rows = curs.fetchall()
+    for row in rows:
+        print(row)
+    conn.close()
     writer.writerow(city_name)
