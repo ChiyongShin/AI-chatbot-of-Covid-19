@@ -56,7 +56,7 @@ def match_city(x):
     elif "제주" in x:
         x[0] = "Jeju"
     elif "검역" in x:
-        x[0] = "Quarantine"
+        x[0] = "Lazaretto"
     
 
 data_rows = soup.find("table",attrs={"class":"midsize"}).find("tbody").find_all("tr")
@@ -78,10 +78,12 @@ for row in data_rows:
             for i in range(0, comma):
                 data.pop()
             data = data[0]
+        if "-" in data:
+            data = '0'
         data_set.append(data)
     city_name.extend(data_set)
   
-
+    print(city_name)
     conn = pymysql.Connect(host="localhost", user="root", password="root", db="db")
     curs = conn.cursor()
     db_update = """
@@ -96,5 +98,4 @@ for row in data_rows:
     for row in rows:
         print(row)
     conn.close()
-
     writer.writerow(city_name)
