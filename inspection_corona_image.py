@@ -34,7 +34,7 @@ try:
         y = row[6]
         z = row[8]
         ratio = [x,y,z]
-    
+        print(ratio)
 
        
         

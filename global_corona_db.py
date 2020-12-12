@@ -66,7 +66,7 @@ for i in range(0,188):
     co_list.append(co_list_a[i])
     co_list.append(co_list_b[i])
 
-    conn = pymysql.Connect(host="localhost", user="root", password="root", db="db")
+    conn = pymysql.Connect(host="localhost", user="root", password="wlsdud369", db="db")
     curs = conn.cursor()
     db_update = """
     UPDATE global_corona_db SET Confirmed='{}' WHERE Country ='{}'
