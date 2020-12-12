@@ -12,9 +12,19 @@ soup = BeautifulSoup(res.text, "lxml")
 countries = soup.find_all("td",attrs={"class":"w_bold"})
 
 f = open("text.txt","w")
-for country in countries:
-    co_text = country.get_text()
-    co_text = '"'+co_text + '"' 
-    f.write(co_text)
+for i in range(0,188):
 
+    f.write("co_list[{}]".format(i))
 f.close()
+
+# for country in countries:
+#     co_text = country.get_text()
+#     if " " in co_text:
+#         re.sub(r"\s+","",co_text)
+#         print(co_text)
+    # print(co_text)
+    # print(type(co_text))
+    # co_text = '"'+co_text + '"' 
+    # f.write(co_text)
+
+# f.close()
