@@ -18,17 +18,18 @@ try:
     results = curs.fetchall()
     discresults = {}
     for row in results:
-        Date = row[0]
-        Confirmed = row[1]
+        NumberOrder = row[0]
+        Date = row[1]
+        Confirmed = row[2]
         # Confirmed_set.append(Confirmed)
-        Cure = row[2]
+        Cure = row[3]
         print(row)
-        x = row[0]
-        y = row[1]
-        z = row[2]
+        x = row[1]
+        y = row[2]
+        z = row[3]
         plt.plot(x,y,'or',label='Confirmed')
         plt.plot(x,z,'ob',label='Cure')
-        plt.title("day_corona")
+        plt.title("Day COVID-19 Confirmed Patients & Recovered Patients")
         plt.xlabel("Date")
         plt.ylabel("Number")
         plt.savefig("day_corona.png")
@@ -42,29 +43,3 @@ plt.show()
 
 
 
-
-# y = np.arange(Confirmed_set[0],Confirmed_set[6])
-# for row in results:
-#     x = row[0]
-#     y = row[1]
-#     plt.plot(x,y,'or')
-# plt.show()
-
-
-
-
-
-
-# df1 = pd.read_sql_table('day_corona_db',conn )
-# plt.style.use('ggplot')
-# df1.plot(title='확진자',figsize = (16,10))
-
-# plt.figure()
-# plt.plot(Date,Confirmed)
-# plt.grid('white')
-# plt.xlabel('날짜')
-# plt.ylabel('확진자')
-# plt.title('코로나19 일별 확진 환자 발생 및 완치 현황')
-# plt.xticks(Date)
-# plt.plot([5]*21,Confirmed, 'r')
-# plt.show()
