@@ -100,27 +100,26 @@ for row in data_rows:
     city_daily.append(city_name[9])
     for i in range(4, 10):
         city_corona.append(city_name[i])
-    for i in range(1, 4):
-        city_daily.append(city_name[i])
+    for j in range(1, 4):
+        city_daily.append(city_name[j])
 
     conn = pymysql.Connect(host="localhost", user="root", password="1234", db="db")
     curs = conn.cursor()
-    city_corona_db_update = """
-    UPDATE city_corona_db SET City_Name='{}', Confirmed_Patient='{}',Quarantine='{}',Isolation_Release='{}',
-    Dead='{}',Incident_rate='{}' WHERE City_Code='{}'
-    """.format(city_corona[0], city_corona[1], city_corona[2], city_corona[3], city_corona[4], city_corona[5],
-               city_corona[6])
+    # city_corona_db_update = """
+    # UPDATE city_corona_db SET City_Name='{}', Confirmed_Patient='{}',Quarantine='{}',Isolation_Release='{}',
+    # Dead='{}',Incident_rate='{}' WHERE City_Code='{}'
+    # """.format(city_corona[0], city_corona[1], city_corona[2], city_corona[3], city_corona[4], city_corona[5],
+    #            city_corona[6])
 
     city_daily_corona_db_update = """
     UPDATE city_daily_db SET Daily_Change_Total='{}', Daily_Change_Local='{}', Daily_Change_Imported='{}'
     WHERE City_Code='{}'
-    """.format(city_daily[0], city_daily[1], city_daily[2], city_daily[3])
-    curs.execute(city_corona_db_update)
+    """.format(city_daily[1], city_daily[2], city_daily[3], city_daily[0])
+    # curs.execute(city_corona_db_update)
     curs.execute(city_daily_corona_db_update)
     conn.commit()
-    # # rows = curs.fetchall()
-    # # for row in rows:
-    # #     print(row)
+
     conn.close()
     # writer.writerow(city_corona)
     writer.writerow(city_daily)
+
