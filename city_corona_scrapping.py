@@ -13,16 +13,16 @@ soup = BeautifulSoup(res.text, "lxml")
 
 # # 시 도별 확진 환자 수 csv 파일로 변환
 
-city_corona_db = "city_corona_db.csv"
-city_corona_file = open(city_corona_db, "w", encoding="utf-8", newline="")
-writer = csv.writer(city_corona_file)
-title1 = "City_Name	Confirmed_Patient	Quarantine	Isolation_Release	Dead	Incident_rate	City_Code".split("\t")
-writer.writerow(title1)
-# city_daily_db = "city_daily_db.csv"
-# city_daily_file = open(city_daily_db, "w", encoding="utf-8", newline="")
-# writer = csv.writer(city_daily_file)
-# title2 = "City_Code	Daily_Change_Total	Daily_Change_Local	Daily_Change_Imported".split("\t")
-# writer.writerow(title2)
+# city_corona_db = "city_corona_db.csv"
+# city_corona_file = open(city_corona_db, "w", encoding="utf-8", newline="")
+# writer = csv.writer(city_corona_file)
+# title1 = "City_Name	Confirmed_Patient	Quarantine	Isolation_Release	Dead	Incident_rate	City_Code".split("\t")
+# writer.writerow(title1)
+city_daily_db = "city_daily_db.csv"
+city_daily_file = open(city_daily_db, "w", encoding="utf-8", newline="")
+writer = csv.writer(city_daily_file)
+title2 = "City_Code	Daily_Change_Total	Daily_Change_Local	Daily_Change_Imported".split("\t")
+writer.writerow(title2)
 
 
 def match_city(x):
@@ -122,5 +122,5 @@ for row in data_rows:
     # # for row in rows:
     # #     print(row)
     conn.close()
-    writer.writerow(city_corona)
-    # writer.writerow(city_daily)
+    # writer.writerow(city_corona)
+    writer.writerow(city_daily)
