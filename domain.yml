@@ -1,0 +1,86 @@
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- greet
+- goodbye
+- affirm
+- deny
+- mood_great
+- mood_unhappy
+- bot_challenge
+- corona_info1
+- corona_info2
+- corona_info3
+- corona_info4
+- corona_info5
+- corona_info6
+- corona_info7:
+    use_entities:
+    - corona_info
+- corona_intro
+- corona_start
+- corona:
+    use_entities:
+    - corona
+- corona_info:
+    use_entities:
+    - corona_info
+entities:
+- corona
+- corona_info
+slots:
+  corona:
+    type: text
+    influence_conversation: true
+  corona_info:
+    type: text
+    influence_conversation: true
+responses:
+  utter_greet:
+  - text: Hey! How are you?
+  utter_cheer_up:
+  - image: https://i.imgur.com/nGF1K8f.jpg
+    text: 'Here is something to cheer you up:'
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_happy:
+  - text: Great, carry on!
+  utter_goodbye:
+  - text: Bye
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_corona_intro:
+  - text: Ths keep getting worse
+  utter_corona:
+  - text: what do you want?
+  utter_corona_info:
+  - text: What corona information do you want?
+  utter_corona_info1:
+  - image: https://i.imgur.com/eRQK3LR.png
+    text: 'Here is status of corona domestic outbreaks:'
+  utter_corona_info2:
+  - image: https://i.imgur.com/eOsdlQ7.png
+    text: 'Here is status of corona domestic outbreaks:'
+  utter_corona_info3:
+  - image: https://i.imgur.com/hG17xPu.png
+    text: 'Here is the status of corona global outbreaks:'
+  utter_corona_info4:
+  - image: https://i.imgur.com/EcHQJQh.png
+    text: 'Here is the status of diagnosis by corona city and province:'
+  utter_corona_info5:
+  - image: https://i.imgur.com/oKgLKOM.png
+    text: 'Here is status of patients confirmed and cured by corona daily:'
+  utter_corona_info6:
+  - text: ok... bye!
+actions:
+- action_corona_information
+- action_corona_browser
+forms:
+  user_details_form:
+    corona:
+    - entity: corona
+      type: from_entity
+    corona_info:
+    - entity: corona_info
+      type: from_entity
