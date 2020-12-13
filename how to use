@@ -1,0 +1,8 @@
+1. make folder in project
+2. open terminal in folder and execute virtualenv -p python3.7 venv
+3. source venv/bin/activate
+4. pip install rasa
+5. pip install numpy==1.8
+6. rasa init --no-prompt
+7. pip3 install rasa-x --extra-index-url https://pypi.rasa.com/simple
+8. change action.py, domain.yml, nlu.yml , stories.yml
