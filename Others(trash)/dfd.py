@@ -11,7 +11,7 @@ soup = BeautifulSoup(res.text, "lxml")
 
 countries = soup.find_all("td",attrs={"class":"w_bold"})
 
-f = open("text.txt","w")
+f = open("text.txt", "w")
 for i in range(0,188):
 
     f.write("co_list[{}]".format(i))
