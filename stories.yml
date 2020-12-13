@@ -1,0 +1,100 @@
+version: "2.0"
+stories:
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+- story: corona path
+  steps:
+  - intent: corona_intro
+  - action: utter_corona_intro
+  - intent: corona
+    entities:
+    - corona: corona
+  - slot_was_set:
+    - corona: corona
+  - action: utter_corona_info
+  - intent: corona_info
+    entities:
+    - corona_info: definition of corona
+    - corona_info: corona disease classification
+    - corona_info: corona pathogen
+    - corona_info: corona radio path
+    - corona_info: corona incubation period
+    - corona_info: diagnosis criteria for corona
+    - corona_info: symptoms of corona
+    - corona_info: corona treatment
+  - slot_was_set:
+    - corona_info: definition of corona
+  - slot_was_set:
+    - corona_info: corona disease classification
+  - slot_was_set:
+    - corona_info: corona pathogen
+  - slot_was_set:
+    - corona_info: corona radio path
+  - slot_was_set:
+    - corona_info: what is corona
+  - slot_was_set:
+    - corona_info: corona type
+  - slot_was_set:
+    - corona_info: corona form
+  - slot_was_set:
+    - corona_info: i want to know the human infection corona
+  - slot_was_set:
+    - corona_info: corona genus
+  - slot_was_set:
+    - corona_info: human infection corona virus
+  - action: action_corona_information
+  - intent: corona_info1
+  - action: action_corona_browser
+  - intent: corona_info2
+  - action: utter_corona_info2
+  - intent: corona_info3
+  - action: utter_corona_info3
+  - intent: corona_info4
+  - action: utter_corona_info4
+  - intent: corona_info5
+  - action: utter_corona_info5
+  - intent: corona_info7
+    entities:
+    - corona_info: what is corona
+    - corona_info: corona type
+    - corona_info: corona form
+    - corona_info: i want to know the human infection corona
+    - corona_info: corona genus
+    - corona_info: human infection corona virus
+  - slot_was_set:
+    - corona_info: what is corona
+  - slot_was_set:
+    - corona_info: corona type
+  - slot_was_set:
+    - corona_info: corona form
+  - slot_was_set:
+    - corona_info: i want to know the human infection corona
+  - slot_was_set:
+    - corona_info: corona genus
+  - slot_was_set:
+    - corona_info: human infection corona virus
+  - action: action_corona_information
+  - intent: corona_info6
+  - action: utter_corona_info6

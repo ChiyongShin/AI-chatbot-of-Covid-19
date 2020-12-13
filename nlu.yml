@@ -1,0 +1,154 @@
+version: "2.0"
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+- intent: goodbye
+  examples: |
+    - good afternoon
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+- intent: corona_intro
+  examples: |
+    - what's the situation with corona?
+    - how is corona doing?
+    - corona situations
+    - hehehe
+- intent: corona_start
+  examples: |
+    - ops
+    - oh my godd
+    - oh my goddd
+    - that is exactly what i think
+    - wowowowo
+- intent: corona
+  examples: |
+    - [corona](corona)
+    - [corona](corona) information
+    - [corona](corona) information, please
+    - i want to know about [corona](corona)
+- intent: corona_info
+  examples: |
+    - tell me the [definition of corona](corona_info)
+    - tell me about the [corona disease classification](corona_info)
+    - tell me about [corona pathogen](corona_info)
+    - tell me about [corona radio path](corona_info)
+    - tell me about the [corona incubation period](corona_info)
+    - tell me the [diagnosis criteria for corona](corona_info)
+    - tell me the [symptoms of corona](corona_info)
+    - tell me about [corona treatment](corona_info)
+    - tell me the [fatality rate of corona](corona_info)
+    - tell me the [management of corona](corona_info)
+    - tell me about [corona prevention](corona_info)
+- intent: corona_info1
+  examples: |
+    - tell me the status of corona examinations
+    - corona examinations
+    - examinations
+- intent: corona_info2
+  examples: |
+    - tell me the status of corona domestic outbreaks
+    - corona domestic outbreaks
+    - domestic outbreaks
+- intent: corona_info3
+  examples: |
+    - tell me the status of corona global outbreaks
+    - corona global outbreaks
+    - global outbreaks
+- intent: corona_info4
+  examples: |
+    - tell me the status of diagnosis by corona city and province
+    - diagnosis by corona city and province
+    - diagnosis
+- intent: corona_info5
+  examples: |
+    - tell me the status of patients confirmed and cured by corona daily
+    - status of patients confirmed and cured by corona daily
+    - status of patients
+- intent: corona_info7
+  examples: |
+    - [what is corona](corona_info)
+    - [corona type](corona_info)
+    - [corona form](corona_info)
+    - [i want to know the human infection corona](corona_info)
+    - [corona genus](corona_info)
+    - [human infection corona virus](corona_info)
+- intent: corona_info6
+  examples: |
+    - now i don't want to any questions
+    - stop question
